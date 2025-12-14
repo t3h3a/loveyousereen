@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sereen 💗</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <div class="hero-card" id="heroCard">
+      <div class="card-glow" aria-hidden="true"></div>
+      <div class="card-overlay" aria-hidden="true"></div>
+      <div class="spark spark--one" aria-hidden="true"></div>
+      <div class="spark spark--two" aria-hidden="true"></div>
+      <div class="spark spark--three" aria-hidden="true"></div>
+      <div class="hero-card__content">
+        <p class="hero-card__tag">For Sereen</p>
+        <h1>Sereen 💗</h1>
+        <p class="hero-card__subtitle">Sereen, You’re Special</p>
+        <div class="quote-wrap">
+          <div class="quote-inner">
+            <p class="quote-text" id="quoteText"></p>
+          </div>
+          <div class="quote-actions">
+            <button class="btn btn--ghost" id="nextQuoteBtn" type="button">يلي بعدووو</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="question-overlay is-hidden" id="questionOverlay">
+      <div class="question-card">
+        <p class="question-text" id="questionText">Do you love me? 💗</p>
+          <div class="question-actions" id="questionActions">
+            <button class="btn btn--solid" id="yesBtn" type="button">آه</button>
+            <button class="btn btn--ghost" id="noBtn" type="button">لا</button>
+          </div>
+        </div>
+    </div>
+    <div class="final-overlay is-hidden" id="finalOverlay">
+      <p>وأنا كمان بحبك أضعاف… يا روحييي 💗</p>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="music.mp3" loop preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.136.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>

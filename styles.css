@@ -1,0 +1,453 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Cairo", "Tajawal", "Segoe UI", system-ui, sans-serif;
+  color: #fff;
+  background-color: #030006;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: radial-gradient(circle at top right, rgba(238, 82, 130, 0.35), transparent 45%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 35%),
+    #030006;
+  overflow: hidden;
+}
+
+body.celebration {
+  animation: romanticGlow 14s infinite alternate;
+}
+
+.page-shell {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-card {
+  position: relative;
+  width: min(90vw, 640px);
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: rgba(5, 3, 12, 0.7);
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 25px 40px rgba(0, 0, 0, 0.55),
+    0 0 45px rgba(238, 82, 130, 0.28);
+  backdrop-filter: blur(24px);
+  overflow: hidden;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  z-index: 2;
+}
+
+.hero-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-card--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(40px);
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.hero-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 3, 12, 0.75), rgba(255, 111, 182, 0.2));
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.hero-card__tag {
+  margin: 0 0 0.4rem;
+  letter-spacing: 0.35em;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+.hero-card h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  line-height: 1.2;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.55);
+}
+
+.hero-card__subtitle {
+  margin: 0.4rem auto 1.4rem;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.quote-wrap {
+  margin: 1rem auto 2rem;
+  padding: 1.2rem 1.4rem 0;
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+  min-height: 160px;
+}
+
+.quote-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+.quote-inner {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+}
+
+.quote-text {
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 1.6rem);
+  line-height: 1.7;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 15px 25px rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.quote-text.is-muted {
+  opacity: 0.15;
+  transition: opacity 0.6s ease;
+}
+
+.quote-text.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.quote-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.quote-actions .btn {
+  width: 100%;
+  max-width: 200px;
+}
+
+.quote-actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+}
+
+.btn--solid {
+  background: linear-gradient(120deg, #ff6fb6, #ff467d);
+  color: #fff;
+  box-shadow: 0 12px 25px rgba(255, 111, 182, 0.45);
+}
+
+.btn--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 3px;
+}
+
+.question-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 1rem;
+  z-index: 3;
+}
+
+.question-card {
+  padding: 1.1rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.question-text {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.question-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.65rem;
+  position: relative;
+}
+
+.question-actions.is-hidden {
+  visibility: hidden;
+}
+
+.question-actions button {
+  transition: transform 0.35s ease;
+}
+
+.question-actions .btn--ghost {
+  position: relative;
+}
+
+.final-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(2, 0, 10, 0.8);
+  z-index: 3;
+  font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+  color: #ffd3e8;
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.final-overlay::after {
+  content: '💖 ✨';
+  display: block;
+  font-size: 1.25rem;
+  margin-top: 0.8rem;
+}
+
+.card-glow,
+.spark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.card-glow {
+  background: radial-gradient(circle at 50% -20%, rgba(255, 111, 182, 0.35), transparent 60%);
+  filter: blur(12px);
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.spark--one {
+  width: 18px;
+  height: 18px;
+  top: 15%;
+  left: -2%;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  animation: sparkle 4s ease-in-out infinite;
+}
+
+.spark--two {
+  width: 22px;
+  height: 22px;
+  bottom: 12%;
+  right: 10%;
+  background: rgba(255, 111, 182, 0.45);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(255, 111, 182, 0.6);
+  animation: sparkle 4.8s ease-in-out infinite 0.8s;
+}
+
+.spark--three {
+  width: 14px;
+  height: 14px;
+  top: 30%;
+  right: 5%;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.55);
+  animation: sparkle 3.8s ease-in-out infinite 0.2s;
+}
+
+canvas {
+  display: block;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+  z-index: -1;
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    transform: scale(0.75);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translate(-50%, 0) scale(0.7);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -90px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.celebration {
+  background: radial-gradient(circle at 10% 20%, rgba(255, 111, 182, 0.2), transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(255, 255, 255, 0.2), transparent 40%),
+    linear-gradient(180deg, #1b043e, #0d001a);
+}
+
+.ascending-heart {
+  position: fixed;
+  bottom: -40px;
+  font-size: 1.2rem;
+  color: #ffabc1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  animation: floatUp 4s ease-out forwards;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-420px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes romanticGlow {
+  0% {
+    background: radial-gradient(circle at top right, rgba(238, 82, 130, 0.35), transparent 45%),
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 35%),
+      #030006;
+  }
+  50% {
+    background: radial-gradient(circle at top right, rgba(255, 182, 193, 0.35), transparent 45%),
+      radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.2), transparent 35%),
+      #15021b;
+  }
+  100% {
+    background: radial-gradient(circle at top right, rgba(255, 111, 182, 0.35), transparent 45%),
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.25), transparent 35%),
+      #0a0414;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .hero-card {
+    padding: 1.5rem;
+  }
+
+  .quote-wrap {
+    min-height: 180px;
+  }
+
+  .question-actions {
+    flex-direction: column;
+  }
+
+  .question-actions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spark,
+  .card-glow,
+  .btn {
+    animation: none;
+    transition: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+
+  .hero-card {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .quote-text,
+  .question-card,
+  .final-overlay {
+    transition: none;
+  }
+}
